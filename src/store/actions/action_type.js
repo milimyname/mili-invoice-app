@@ -1,0 +1,9 @@
+export const add_invoice = "add_invoice";
+export const save_changes = "save_changes";
+export const edit_invoice = "edit_invoice";
+export const delete_invoice = "delete_invoice";
+export const paid_invoice = "paid_invoice";
+export const create_invoice = "create_invoice";
+export const discard_invoice = "discard_invoice";
+export const toggle_modal = "toggle_modal";
+export const set_errors = "set_errors";
