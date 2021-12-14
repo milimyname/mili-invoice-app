@@ -1,7 +1,7 @@
-import { StyledWrapper } from "./StyledWrapper";
+import { StyledWrapper } from './WrapperStyles';
 
 const Wrapper = ({ children }) => {
-  return <StyledWrapper>{children}</StyledWrapper>;
+    return <StyledWrapper>{children}</StyledWrapper>;
 };
 
 export default Wrapper;

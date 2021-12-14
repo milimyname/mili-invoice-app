@@ -6,25 +6,25 @@
  * @return {string} Formatted string.
  */
 const invoicesLengthMessage = (invoicesArr, filterType, windowWidth) => {
-  const invoicesLength = invoicesArr.length;
-  const isMobile = windowWidth <= 768;
-  const type = filterType === "all" ? "total" : filterType;
+    const invoicesLength = invoicesArr.length;
+    const isMobile = windowWidth <= 768;
+    const type = filterType === 'all' ? 'total' : filterType;
 
-  if (invoicesLength === 0) {
-    return `No Invoices`;
-  } else if (invoicesLength === 1) {
-    if (isMobile) {
-      return `1 ${type} invoice`;
-    } else {
-      return `There is 1 ${type} invoice`;
+    if (invoicesLength === 0) {
+        return `No Invoices`;
+    } else if (invoicesLength === 1) {
+        if (isMobile) {
+            return `1 ${type} invoice`;
+        } else {
+            return `There is 1 ${type} invoice`;
+        }
+    } else if (invoicesLength > 1) {
+        if (isMobile) {
+            return `${invoicesLength} ${type} invoices`;
+        } else {
+            return `There are ${invoicesLength} ${type} invoices`;
+        }
     }
-  } else if (invoicesLength > 1) {
-    if (isMobile) {
-      return `${invoicesLength} ${type} invoices`;
-    } else {
-      return `There are ${invoicesLength} ${type} invoices`;
-    }
-  }
 };
 
 export default invoicesLengthMessage;

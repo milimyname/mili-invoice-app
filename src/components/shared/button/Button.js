@@ -1,6 +1,7 @@
-import StyledButton from "./StyledButton";
+import { StyledButton } from './ButtonStyles';
+
 const Button = ({ children, ...props }) => {
-  return <StyledButton {...props}>{children}</StyledButton>;
+    return <StyledButton {...props}>{children}</StyledButton>;
 };
 
 export default Button;

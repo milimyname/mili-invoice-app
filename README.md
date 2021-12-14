@@ -6,7 +6,7 @@
 
 ### Links
 
-- [Live site URL](https://invoice-tediko.netlify.app/) to see live version.
+- [Live site URL](https://mili-invoice-app.netlify.app/) to see live version.
 
-- [Live site URL](https://invoice-tediko.netlify.app/) to see live version.
+
 - [Tediko's repository](https://github.com/tediko/invoice-app) Tediko's invoice app code

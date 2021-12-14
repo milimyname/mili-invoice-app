@@ -1,57 +1,60 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from 'react';
 
-const initialFilterType = "all";
+const initialFilterType = 'all';
 
 const useFilter = (callback) => {
-  const [filteredInvoices, SetFilteredInvoices] = useState(callback.invoice);
-  const [filterType, SetFitlerType] = useState(initialFilterType);
-  const previosFilterType = useRef(initialFilterType);
+    const [filteredInvoices, setFilteredInvoices] = useState(callback.invoices);
+    const [filterType, setFilterType] = useState(initialFilterType);
+    const previousFilterType = useRef(initialFilterType);
 
-  /*
-   * Func to filter filteredInvoices based on filter type
-   * @param {string} type - filter type
-   */
+    /**
+     * Running an effect whenever callback changes and call handleFilter() with current type
+     */
+    useEffect(() => {
+        handleFilter(filterType);
+    }, [callback]);
 
-  const handleFilter = (type) => {
-    if (type === initialFilterType)
-      return SetFilteredInvoices(callback.invoices);
+    /**
+     * Function to filter filteredInvoices based on filter type.
+     * @param    {String}  string - String with filter type
+     */
+    const handleFilter = (type) => {
+        if (type === initialFilterType) {
+            setFilteredInvoices(callback.invoices);
+            return false;
+        }
 
-    const newInvoices = callback.invoices.filter(
-      (item) => item.status === type
-    );
-    SetFilteredInvoices(newInvoices);
-  };
+        const newInvoices = callback.invoices.filter(
+            (item) => item.status === type
+        );
+        setFilteredInvoices(newInvoices);
+    };
 
-  // Run useEffect() whenever callback changes and call handleFilter() with a current type
-  useEffect(() => {
-    handleFilter(filterType);
-  }, [callback]);
+    /**
+     * Function to change filter type based on passed props.
+     * Call handleFilter function to change filteredInvoices based on that filter type.
+     * @param    {String}  event - String with filter type
+     */
+    const changeFilterType = (event) => {
+        const type = event.target.value;
 
-  /*
-   * Func to change filter based on passed props
-   * Call handlefilter() to change filteredInvoices based on filter type
-   * @param {string} event - filter type
-   */
+        if (previousFilterType.current === type) {
+            previousFilterType.current = initialFilterType;
+            handleFilter(initialFilterType);
+            setFilterType(initialFilterType);
+            return false;
+        }
 
-  const changeFilterType = (event) => {
-    const type = event.target.value;
+        previousFilterType.current = type;
+        handleFilter(type);
+        setFilterType(type);
+    };
 
-    if (previosFilterType.current === type) {
-      previosFilterType.current = initialFilterType;
-      handleFilter(initialFilterType);
-      return SetFitlerType(initialFilterType);
-    }
-
-    previosFilterType.current = type;
-    handleFilter(type);
-    SetFitlerType(type);
-  };
-
-  return {
-    filteredInvoices,
-    filterType,
-    changeFilterType,
-  };
+    return {
+        filteredInvoices,
+        filterType,
+        changeFilterType,
+    };
 };
 
 export default useFilter;
